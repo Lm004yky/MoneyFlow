@@ -1,0 +1,11 @@
+strings:
+  inputs: MoneyFlow/Common/Resources/Localizable
+  outputs:
+    - templateName: structured-swift5
+      output: MoneyFlow/Common/Generated/Strings.swift
+
+xcassets:
+  inputs: MoneyFlow/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: MoneyFlow/Common/Generated/Assets.swift
