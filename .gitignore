@@ -1,0 +1,38 @@
+# Xcode
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+/*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# Build
+/build/
+DerivedData/
+*.hmap
+
+# CocoaPods
+Pods/
+*.xcworkspace
+!default.xcworkspace
+
+# SPM
+.swiftpm/
+.build/
+
+# User settings
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
+
+# macOS
+.DS_Store
+
+# SwiftLint
+.swiftlint.yml.cache
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
