@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
-import CoreData
 
 @main
 struct MoneyFlowApp: App {
+    let coreDataManager = CoreDataManager.shared
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, coreDataManager.context)
         }
     }
 }
