@@ -10,20 +10,21 @@ import Combine
 
 final class HomeViewModel: ObservableObject {
     @Published var totalBalance: Decimal = 0
+    @Published var cards: [Card] = []
     @Published var isLoading = false
     
-    private let coreDataManager = CoreDataManager.shared
+    private let cardRepository: CardRepositoryProtocol
     
-    init() {
+    init(cardRepository: CardRepositoryProtocol = CardRepository()) {
+        self.cardRepository = cardRepository
         loadData()
     }
     
     func loadData() {
         isLoading = true
         
-        // TODO: Загрузка данных из CoreData
-        // Пока заглушка
-        totalBalance = 450000.50
+        cards = cardRepository.getCards()
+        totalBalance = cardRepository.getTotalBalance()
         
         isLoading = false
     }
