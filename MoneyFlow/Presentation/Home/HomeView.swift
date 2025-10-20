@@ -17,6 +17,9 @@ struct HomeView: View {
                     // Баланс
                     balanceCard
                     
+                    // Категории
+                    categoriesSection
+                    
                     // Кнопка добавить расход
                     PrimaryButton(title: "Добавить расход") {
                         // TODO: Открыть экран добавления
@@ -44,6 +47,24 @@ struct HomeView: View {
         .background(Color.theme.primary.opacity(0.1))
         .cornerRadius(Constants.Design.cardCornerRadius)
         .padding(.horizontal)
+    }
+    
+    private var categoriesSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Категории")
+                .font(.headline)
+                .foregroundColor(.theme.textPrimary)
+                .padding(.horizontal)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(Category.defaultCategories) { category in
+                        CategoryChip(category: category)
+                    }
+                }
+                .padding(.horizontal)
+            }
+        }
     }
     
     private func formatBalance(_ amount: Decimal) -> String {
