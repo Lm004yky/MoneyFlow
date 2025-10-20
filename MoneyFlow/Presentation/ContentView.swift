@@ -15,7 +15,7 @@ struct ContentView: View {
                     Label("tab.home".localized, systemImage: "house.fill")
                 }
             
-            Text("tab.cards".localized)
+            CardsView()
                 .tabItem {
                     Label("tab.cards".localized, systemImage: "creditcard.fill")
                 }
