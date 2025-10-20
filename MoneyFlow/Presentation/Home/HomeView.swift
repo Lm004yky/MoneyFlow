@@ -29,6 +29,9 @@ struct HomeView: View {
                 }
                 .padding(.top)
             }
+            .refreshable {
+                await refreshData()
+            }
             .navigationTitle("tab.home".localized)
         }
     }
@@ -70,6 +73,12 @@ struct HomeView: View {
     
     private func formatBalance(_ amount: Decimal) -> String {
         Formatters.currency(amount)
+    }
+    
+    private func refreshData() async {
+        HapticManager.light()
+        try? await Task.sleep(seconds: 0.5)
+        viewModel.loadData()
     }
 }
 
