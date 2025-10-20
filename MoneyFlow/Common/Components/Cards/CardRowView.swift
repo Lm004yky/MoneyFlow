@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CardRowView: View {
     let card: Card
+    @State private var appeared = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -46,6 +47,13 @@ struct CardRowView: View {
         )
         .cornerRadius(Constants.Design.cardCornerRadius)
         .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
+        .scaleEffect(appeared ? 1 : 0.9)
+        .opacity(appeared ? 1 : 0)
+        .onAppear {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+                appeared = true
+            }
+        }
     }
 }
 

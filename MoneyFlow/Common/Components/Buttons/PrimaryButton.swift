@@ -12,7 +12,10 @@ struct PrimaryButton: View {
     let action: () -> Void
     
     var body: some View {
-        Button(action: action) {
+        Button(action: {
+            HapticManager.light()
+            action()
+        }) {
             Text(title)
                 .font(.headline)
                 .foregroundColor(.white)
