@@ -47,4 +47,36 @@ final class CoreDataManager {
             print("Failed to save CoreData: \(error)")
         }
     }
+    
+    // MARK: - Initial Data
+
+    func populateInitialDataIfNeeded() {
+        let request: NSFetchRequest<CardEntity> = CardEntity.fetchRequest()
+        
+        do {
+            let count = try context.count(for: request)
+            if count == 0 {
+                createSampleData()
+            }
+        } catch {
+            print("Error checking data: \(error)")
+        }
+    }
+
+    private func createSampleData() {
+        // Создать пример карты
+        let card = CardEntity(context: context)
+        card.id = UUID()
+        card.name = "Kaspi Gold"
+        card.number = "4400"
+        card.balance = NSDecimalNumber(decimal: 450000.50)
+        card.currency = "₸"
+        card.colorHex = "#FFD700"
+        card.iconName = "creditcard.fill"
+        card.createdAt = Date()
+        card.updatedAt = Date()
+        
+        save()
+        print("✅ Sample data created")
+    }
 }
