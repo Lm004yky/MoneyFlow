@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
-    @State private var showAddTransaction = false
+    @EnvironmentObject var router: AppRouter
     
     var body: some View {
         NavigationStack {
@@ -23,11 +23,7 @@ struct HomeView: View {
                     
                     // Кнопка добавить расход
                     PrimaryButton(title: "Добавить расход") {
-                        showAddTransaction = true
-                    }
-                    .padding(.horizontal)
-                    .sheet(isPresented: $showAddTransaction) {
-                        AddTransactionView()
+                        router.presentSheet(.addTransaction)
                     }
                     .padding(.horizontal)
                 }
