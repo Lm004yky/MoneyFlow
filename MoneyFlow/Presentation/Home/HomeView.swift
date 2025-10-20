@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
+    @State private var showAddTransaction = false
     
     var body: some View {
         NavigationStack {
@@ -22,7 +23,11 @@ struct HomeView: View {
                     
                     // Кнопка добавить расход
                     PrimaryButton(title: "Добавить расход") {
-                        // TODO: Открыть экран добавления
+                        showAddTransaction = true
+                    }
+                    .padding(.horizontal)
+                    .sheet(isPresented: $showAddTransaction) {
+                        AddTransactionView()
                     }
                     .padding(.horizontal)
                 }
