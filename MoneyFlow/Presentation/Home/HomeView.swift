@@ -47,11 +47,7 @@ struct HomeView: View {
     }
     
     private func formatBalance(_ amount: Decimal) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = " "
-        formatter.maximumFractionDigits = 2
-        return (formatter.string(from: amount as NSDecimalNumber) ?? "0") + " ₸"
+        Formatters.currency(amount)
     }
 }
 
