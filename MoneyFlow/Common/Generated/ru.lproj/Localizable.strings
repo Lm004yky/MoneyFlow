@@ -1,0 +1,10 @@
+"app.name" = "MoneyFlow";
+"ok" = "ОК";
+"cancel" = "Отмена";
+"save" = "Сохранить";
+"delete" = "Удалить";
+
+"tab.home" = "Главная";
+"tab.cards" = "Карты";
+"tab.statistics" = "Статистика";
+"tab.settings" = "Настройки";
