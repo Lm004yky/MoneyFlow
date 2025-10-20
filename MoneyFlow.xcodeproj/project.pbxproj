@@ -99,6 +99,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E78EAD712EA4D35900812219 /* Build configuration list for PBXNativeTarget "MoneyFlow" */;
 			buildPhases = (
+				E78EAD8E2EA542FE00812219 /* SwiftLint */,
 				E78EAD472EA4D35600812219 /* Sources */,
 				E78EAD482EA4D35600812219 /* Frameworks */,
 				E78EAD492EA4D35600812219 /* Resources */,
@@ -230,6 +231,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E78EAD8E2EA542FE00812219 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E78EAD472EA4D35600812219 /* Sources */ = {
