@@ -95,9 +95,16 @@ struct HomeView: View {
             
             VStack(spacing: 8) {
                 ForEach(viewModel.recentTransactions) { transaction in
-                    TransactionRow(
-                        transaction: transaction,
-                        category: findCategory(for: transaction.categoryId)
+                    SwipeableView(
+                        content: {
+                            TransactionRow(
+                                transaction: transaction,
+                                category: findCategory(for: transaction.categoryId)
+                            )
+                        },
+                        onDelete: {
+                            deleteTransaction(transaction)
+                        }
                     )
                 }
             }
@@ -107,6 +114,11 @@ struct HomeView: View {
 
     private func findCategory(for id: UUID) -> Category? {
         Category.defaultCategories.first { $0.id == id }
+    }
+    
+    private func deleteTransaction(_ transaction: Transaction) {
+        HapticManager.medium()
+        viewModel.deleteTransaction(transaction)
     }
 }
 

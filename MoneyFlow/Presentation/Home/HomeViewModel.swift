@@ -35,4 +35,9 @@ final class HomeViewModel: ObservableObject {
         
         isLoading = false
     }
+    
+    func deleteTransaction(_ transaction: Transaction) {
+        transactionRepository.deleteTransaction(by: transaction.id)
+        loadData()
+    }
 }
