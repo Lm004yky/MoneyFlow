@@ -49,7 +49,7 @@ struct ContentView: View {
         case .editTransaction(let transaction):
             Text("Edit Transaction: \(transaction.merchantName)")
         case .addCard:
-            Text("Add Card") // TODO
+            AddCardView()
         case .editCard(let card):
             Text("Edit Card: \(card.name)")
         case .categoryPicker:

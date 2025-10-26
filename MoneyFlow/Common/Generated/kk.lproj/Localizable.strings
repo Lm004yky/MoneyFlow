@@ -8,3 +8,28 @@
 "tab.cards" = "Карталар";
 "tab.statistics" = "Статистика";
 "tab.settings" = "Баптаулар";
+
+// Cards
+"card.add.title" = "Жаңа карта";
+"card.info" = "Карта туралы мәлімет";
+"card.name" = "Карта атауы";
+"card.lastDigits" = "Соңғы 4 сан";
+"card.initialBalance" = "Бастапқы баланс";
+"card.currency" = "Валюта";
+"card.design" = "Дизайн";
+"card.color" = "Карта түсі";
+"card.create" = "Жасау";
+
+// Currencies
+"currency.tenge" = "₸ Теңге";
+"currency.dollar" = "$ Доллар";
+"currency.euro" = "€ Евро";
+"currency.ruble" = "₽ Рубль";
+
+// Colors
+"color.gold" = "Алтын";
+"color.green" = "Жасыл";
+"color.blue" = "Көк";
+"color.purple" = "Күлгін";
+"color.orange" = "Қызғылт сары";
+"color.gray" = "Сұр";

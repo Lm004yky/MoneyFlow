@@ -8,3 +8,28 @@
 "tab.cards" = "Cards";
 "tab.statistics" = "Statistics";
 "tab.settings" = "Settings";
+
+// Cards
+"card.add.title" = "New Card";
+"card.info" = "Card Information";
+"card.name" = "Card Name";
+"card.lastDigits" = "Last 4 digits";
+"card.initialBalance" = "Initial Balance";
+"card.currency" = "Currency";
+"card.design" = "Design";
+"card.color" = "Card Color";
+"card.create" = "Create";
+
+// Currencies
+"currency.tenge" = "₸ Tenge";
+"currency.dollar" = "$ Dollar";
+"currency.euro" = "€ Euro";
+"currency.ruble" = "₽ Ruble";
+
+// Colors
+"color.gold" = "Gold";
+"color.green" = "Green";
+"color.blue" = "Blue";
+"color.purple" = "Purple";
+"color.orange" = "Orange";
+"color.gray" = "Gray";

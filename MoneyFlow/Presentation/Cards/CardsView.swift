@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CardsView: View {
     @StateObject private var viewModel = CardsViewModel()
+    @EnvironmentObject var router: AppRouter
     
     var body: some View {
         NavigationStack {
@@ -26,11 +27,14 @@ struct CardsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        // TODO: Добавить карту
+                        router.presentSheet(.addCard)
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
+            }
+            .onAppear {
+                viewModel.loadCards()
             }
         }
     }

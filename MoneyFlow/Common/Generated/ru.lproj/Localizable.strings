@@ -8,3 +8,28 @@
 "tab.cards" = "Карты";
 "tab.statistics" = "Статистика";
 "tab.settings" = "Настройки";
+
+// Cards
+"card.add.title" = "Новая карта";
+"card.info" = "Информация о карте";
+"card.name" = "Название карты";
+"card.lastDigits" = "Последние 4 цифры";
+"card.initialBalance" = "Начальный баланс";
+"card.currency" = "Валюта";
+"card.design" = "Оформление";
+"card.color" = "Цвет карты";
+"card.create" = "Создать";
+
+// Currencies
+"currency.tenge" = "₸ Тенге";
+"currency.dollar" = "$ Доллар";
+"currency.euro" = "€ Евро";
+"currency.ruble" = "₽ Рубль";
+
+// Colors
+"color.gold" = "Золотой";
+"color.green" = "Зеленый";
+"color.blue" = "Синий";
+"color.purple" = "Фиолетовый";
+"color.orange" = "Оранжевый";
+"color.gray" = "Серый";
