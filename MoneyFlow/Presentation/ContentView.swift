@@ -22,7 +22,7 @@ struct ContentView: View {
                     Label("tab.cards".localized, systemImage: "creditcard.fill")
                 }
             
-            Text("tab.statistics".localized)
+            StatisticsView()
                 .tabItem {
                     Label("tab.statistics".localized, systemImage: "chart.bar.fill")
                 }
