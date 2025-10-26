@@ -9,36 +9,54 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var router = AppRouter()
+    @State private var isUnlocked = false
     
+    init() {
+        // Проверяем включена ли биометрия
+        let biometricEnabled = UserDefaults.standard.bool(forKey: "biometricEnabled")
+        _isUnlocked = State(initialValue: !biometricEnabled)
+    }
+
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Label("tab.home".localized, systemImage: "house.fill")
+        ZStack {
+            if isUnlocked || !BiometricManager.shared.isBiometricAvailable {
+                // Показываем приложение только если разблокировано
+                TabView {
+                    HomeView()
+                        .tabItem {
+                            Label("tab.home".localized, systemImage: "house.fill")
+                        }
+                    
+                    CardsView()
+                        .tabItem {
+                            Label("tab.cards".localized, systemImage: "creditcard.fill")
+                        }
+                    
+                    StatisticsView()
+                        .tabItem {
+                            Label("tab.statistics".localized, systemImage: "chart.bar.fill")
+                        }
+                    
+                    SettingsView()
+                        .tabItem {
+                            Label("tab.settings".localized, systemImage: "gearshape.fill")
+                        }
                 }
-            
-            CardsView()
-                .tabItem {
-                    Label("tab.cards".localized, systemImage: "creditcard.fill")
+                .environmentObject(router)
+                .sheet(item: $router.presentedSheet) { destination in
+                    sheetView(for: destination)
                 }
-            
-            StatisticsView()
-                .tabItem {
-                    Label("tab.statistics".localized, systemImage: "chart.bar.fill")
+                .fullScreenCover(item: $router.presentedFullScreen) { destination in
+                    fullScreenView(for: destination)
                 }
-            
-            Text("tab.settings".localized)
-                .tabItem {
-                    Label("tab.settings".localized, systemImage: "gearshape.fill")
-                }
+                .transition(.opacity)
+            } else {
+                // Lock Screen
+                LockScreenView(isUnlocked: $isUnlocked)
+                    .transition(.opacity)
+            }
         }
-        .environmentObject(router)
-        .sheet(item: $router.presentedSheet) { destination in
-            sheetView(for: destination)
-        }
-        .fullScreenCover(item: $router.presentedFullScreen) { destination in
-            fullScreenView(for: destination)
-        }
+        .animation(.easeInOut(duration: 0.3), value: isUnlocked)
     }
     
     @ViewBuilder
