@@ -16,6 +16,8 @@ final class AddTransactionViewModel: ObservableObject {
     @Published var date = Date()
     
     let categories = Category.defaultCategories
+    private let transactionRepository: TransactionRepositoryProtocol
+    private let cardRepository: CardRepositoryProtocol
     
     var isValid: Bool {
         guard let amount = Decimal(string: amountText), amount > 0 else {
@@ -24,12 +26,35 @@ final class AddTransactionViewModel: ObservableObject {
         return !merchantName.isEmpty && selectedCategory != nil
     }
     
-    init() {
+    init(
+        transactionRepository: TransactionRepositoryProtocol = TransactionRepository(),
+        cardRepository: CardRepositoryProtocol = CardRepository()
+    ) {
+        self.transactionRepository = transactionRepository
+        self.cardRepository = cardRepository
         selectedCategory = categories.first
     }
     
     func saveTransaction() {
-        // TODO: Сохранить транзакцию в CoreData
-        print("💾 Сохранение транзакции: \(amountText) ₸ в \(merchantName)")
+        guard let amount = Decimal(string: amountText),
+              let category = selectedCategory,
+              let firstCard = cardRepository.getCards().first else {
+            return
+        }
+        
+        let transaction = Transaction(
+            cardId: firstCard.id,
+            amount: -amount,
+            type: .expense,
+            categoryId: category.id,
+            merchantName: merchantName,
+            note: note.isEmpty ? nil : note,
+            date: date
+        )
+        
+        transactionRepository.createTransaction(transaction)
+        HapticManager.success()
+        
+        print("✅ Транзакция сохранена: \(Formatters.currency(amount)) в \(merchantName)")
     }
 }

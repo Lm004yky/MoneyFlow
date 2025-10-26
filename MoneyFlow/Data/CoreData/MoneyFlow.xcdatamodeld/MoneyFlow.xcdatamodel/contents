@@ -10,6 +10,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="number" attributeType="String"/>
         <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="transactions" toMany="YES" deletionRule="Cascade" destinationEntity="TransactionEntity" inverseName="card" inverseEntity="TransactionEntity"/>
     </entity>
     <entity name="CategoryEntity" representedClassName="CategoryEntity" syncable="YES" codeGenerationType="class">
         <attribute name="colorHex" attributeType="String"/>
@@ -31,5 +32,6 @@
         <attribute name="merchantName" attributeType="String"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
+        <relationship name="card" maxCount="1" deletionRule="Nullify" destinationEntity="CardEntity" inverseName="transactions" inverseEntity="CardEntity"/>
     </entity>
 </model>

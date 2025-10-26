@@ -11,12 +11,18 @@ import Combine
 final class HomeViewModel: ObservableObject {
     @Published var totalBalance: Decimal = 0
     @Published var cards: [Card] = []
+    @Published var recentTransactions: [Transaction] = []
     @Published var isLoading = false
     
     private let cardRepository: CardRepositoryProtocol
+    private let transactionRepository: TransactionRepositoryProtocol
     
-    init(cardRepository: CardRepositoryProtocol = CardRepository()) {
+    init(
+        cardRepository: CardRepositoryProtocol = CardRepository(),
+        transactionRepository: TransactionRepositoryProtocol = TransactionRepository()
+    ) {
         self.cardRepository = cardRepository
+        self.transactionRepository = transactionRepository
         loadData()
     }
     
@@ -25,6 +31,7 @@ final class HomeViewModel: ObservableObject {
         
         cards = cardRepository.getCards()
         totalBalance = cardRepository.getTotalBalance()
+        recentTransactions = transactionRepository.getRecentTransactions(limit: 5)
         
         isLoading = false
     }

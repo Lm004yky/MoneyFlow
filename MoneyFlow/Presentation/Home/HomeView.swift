@@ -21,6 +21,11 @@ struct HomeView: View {
                     // Категории
                     categoriesSection
                     
+                    // Последние транзакции
+                    if !viewModel.recentTransactions.isEmpty {
+                        recentTransactionsSection
+                    }
+                    
                     // Кнопка добавить расход
                     PrimaryButton(title: "Добавить расход") {
                         router.presentSheet(.addTransaction)
@@ -79,6 +84,29 @@ struct HomeView: View {
         HapticManager.light()
         try? await Task.sleep(seconds: 0.5)
         viewModel.loadData()
+    }
+    
+    private var recentTransactionsSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Последние операции")
+                .font(.headline)
+                .foregroundColor(.theme.textPrimary)
+                .padding(.horizontal)
+            
+            VStack(spacing: 8) {
+                ForEach(viewModel.recentTransactions) { transaction in
+                    TransactionRow(
+                        transaction: transaction,
+                        category: findCategory(for: transaction.categoryId)
+                    )
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+
+    private func findCategory(for id: UUID) -> Category? {
+        Category.defaultCategories.first { $0.id == id }
     }
 }
 
