@@ -64,6 +64,7 @@ struct ContentView: View {
         switch destination {
         case .addTransaction:
             AddTransactionView()
+                .environmentObject(router)
         case .editTransaction(let transaction):
             Text("Edit Transaction: \(transaction.merchantName)")
         case .addCard:
@@ -79,7 +80,8 @@ struct ContentView: View {
     private func fullScreenView(for destination: FullScreenDestination) -> some View {
         switch destination {
         case .scanReceipt:
-            Text("Scan Receipt") // TODO
+            ScanReceiptView()
+                .environmentObject(router)
         case .qrScanner:
             Text("QR Scanner") // TODO
         }

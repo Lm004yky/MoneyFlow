@@ -8,5 +8,9 @@
     </array>
     <key>NSFaceIDUsageDescription</key>
     <string>Используется для входа в приложение</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Используется для сканирования чеков</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Используется для выбора чека из галереи</string>
 </dict>
 </plist>

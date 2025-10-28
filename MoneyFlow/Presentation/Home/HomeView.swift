@@ -27,8 +27,23 @@ struct HomeView: View {
                     }
                     
                     // Кнопка добавить расход
-                    PrimaryButton(title: "Добавить расход") {
-                        router.presentSheet(.addTransaction)
+                    HStack(spacing: 12) {
+                        // Кнопка добавить расход
+                        PrimaryButton(title: "Добавить расход") {
+                            router.presentSheet(.addTransaction)
+                        }
+                        
+                        // Кнопка сканировать чек
+                        Button {
+                            router.presentFullScreen(.scanReceipt)
+                        } label: {
+                            Image(systemName: "doc.text.viewfinder")
+                                .font(.title2)
+                                .foregroundColor(.white)
+                                .frame(width: 50, height: 50)
+                                .background(Color.theme.primary)
+                                .cornerRadius(Constants.Design.cornerRadius)
+                        }
                     }
                     .padding(.horizontal)
                 }

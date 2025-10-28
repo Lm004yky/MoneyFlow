@@ -24,6 +24,14 @@ final class HomeViewModel: ObservableObject {
         self.cardRepository = cardRepository
         self.transactionRepository = transactionRepository
         loadData()
+        
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name("TransactionCreated"),
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.loadData()
+        }
     }
     
     func loadData() {
